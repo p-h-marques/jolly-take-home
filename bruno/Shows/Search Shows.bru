@@ -1,0 +1,22 @@
+meta {
+  name: Search Shows
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/search/shows?q=girls
+  body: none
+  auth: none
+}
+
+params:query {
+  q: girls
+}
+
+docs {
+  Fuzzy search by show name. Results ordered by relevancy (best match first).
+
+  Response shape differs from List Shows: each item is
+  { score, show: {...} } instead of a bare show object.
+}

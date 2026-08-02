@@ -1,0 +1,23 @@
+meta {
+  name: List Shows
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/shows?page=0
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 0
+}
+
+docs {
+  Paginated index of all shows, ordered by ID. Max 250 shows per page.
+
+  Page 0 contains show IDs 0-250.
+
+  Used for the infinitely-scrolling list view.
+}

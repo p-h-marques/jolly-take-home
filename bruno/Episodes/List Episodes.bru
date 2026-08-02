@@ -1,0 +1,27 @@
+meta {
+  name: List Episodes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/shows/:id/episodes
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 1
+}
+
+params:query {
+  ~specials: 1
+}
+
+docs {
+  Full episode list for a show, in airing order. Specials excluded by default
+  (enable the `specials` query param to include them).
+
+  `season` and `number` fields are used to group episodes by season in the
+  detail view.
+}
