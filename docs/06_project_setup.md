@@ -8,6 +8,7 @@ Action plan for [step 1 of the roadmap](05_roadmap.md).
 - [x] Set up Expo Router with base tabs structure (List / Favorites): AI generated
 - [x] Create base API client pointing to TVMaze: `src/api/client.ts`, `types.ts`, `shows.ts`: AI generated, plan [here](./plans/client-layer.md)
 - [x] Set up env/config variables, if needed: N/A — TVMaze needs no key/auth, base URL is a fixed constant
-- [ ] Set up TanStack Query (provider, client)
+- [x] Set up TanStack Query (provider, client): AI generated, plan [here](./plans/tanstack-query-layer.md)
+- [ ] Set up unit testing library
 - [ ] Adjust `.tool-versions`/package.json scripts (dev, lint, format, test)
 - [ ] Initial scaffolding commit
