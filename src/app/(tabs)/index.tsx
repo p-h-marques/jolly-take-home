@@ -8,6 +8,9 @@ import { useShows } from "@/hooks/useShows";
 export default function List() {
   const {
     data: shows,
+    hasNextPage,
+    isFetching,
+    isError,
     fetchNextPage,
     isFetchingNextPage,
     status,
@@ -16,22 +19,25 @@ export default function List() {
   } = useShows();
 
   const initialLoading = status === "pending" || isRefetching;
-
-  const ListComponent = shows?.length ? ShowList : Empty;
+  const hasData = !!shows?.length;
 
   return (
     <View style={{ flex: 1 }}>
       {initialLoading && <Loading text="Loading..." />}
 
-      {status === "error" && !initialLoading && (
+      {status === "error" && !initialLoading && !hasData && (
         <ErrorFeedback onRetry={refetch} />
       )}
 
-      {status === "success" && !initialLoading && (
-        <ListComponent
+      {status === "success" && !initialLoading && !hasData && <Empty />}
+
+      {!initialLoading && hasData && (
+        <ShowList
           shows={shows}
           fetchNextPage={fetchNextPage}
           isFetchingNextPage={isFetchingNextPage}
+          shouldFetchNextPage={hasNextPage && !isFetching && !isError}
+          isNextPageError={isError}
         />
       )}
     </View>

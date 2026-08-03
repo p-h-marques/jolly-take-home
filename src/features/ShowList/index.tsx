@@ -3,6 +3,7 @@ import { Link } from "expo-router";
 import { memo, useRef } from "react";
 import { FlatList } from "react-native";
 import type { Show } from "@/api/types";
+import FooterError from "@/components/FooterError";
 import Loading from "@/components/Loading";
 import ShowListItem, { ITEM_HEIGHT } from "@/components/ShowListItem";
 
@@ -39,10 +40,18 @@ interface ShowListProps {
   shows: Show[] | undefined;
   fetchNextPage: () => void;
   isFetchingNextPage: boolean;
+  shouldFetchNextPage: boolean;
+  isNextPageError: boolean;
 }
 
 export default function ShowList(props: ShowListProps) {
-  const { shows, fetchNextPage, isFetchingNextPage } = props;
+  const {
+    shows,
+    fetchNextPage,
+    isFetchingNextPage,
+    shouldFetchNextPage,
+    isNextPageError,
+  } = props;
 
   const listRef = useRef<FlatList>(null);
   useScrollToTop(listRef);
@@ -59,10 +68,16 @@ export default function ShowList(props: ShowListProps) {
       updateCellsBatchingPeriod={50}
       windowSize={7}
       removeClippedSubviews
-      onEndReached={() => fetchNextPage()}
-      ListFooterComponent={() =>
-        isFetchingNextPage && <Loading text="Loading more..." />
-      }
+      onEndReached={() => {
+        if (shouldFetchNextPage) {
+          fetchNextPage();
+        }
+      }}
+      ListFooterComponent={() => {
+        if (isFetchingNextPage) return <Loading text="Loading more..." />;
+        if (isNextPageError) return <FooterError onRetry={fetchNextPage} />;
+        return null;
+      }}
     />
   );
 }

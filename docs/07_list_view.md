@@ -10,6 +10,7 @@ Action plan for [step 2 of the roadmap](05_roadmap.md).
 - [x] Initial loading state: full-screen spinner/skeleton while first page loads: Done manually
 - [x] Error state: message + retry action on initial fetch failure
 - [x] Empty state: fallback message if `/shows` ever returns an empty page (edge case, unlikely but required by the brief)
-- [ ] End-of-list handling: stop requesting once TVMaze returns an empty/short page (no `next` cursor in the API, so this is inferred from page size)
+- [x] End-of-list handling: stop requesting once TVMaze returns an empty/short page (no `next` cursor in the API, so this is inferred from page size): AI generated, plan [here](./plans/infinite-scroll-end.md)
+- [x] Handling error in shows request when error happens in only one page: AI generated, plan [here](./plans/infinite-scroll-error.md)
 - [x] Fix `VirtualizedList` "slow to update" warning on large pages (~250 items/page): memoize `ShowListItem`, stabilize `renderItem`, add `getItemLayout`, tune FlatList windowing props: AI generated, plan [here](./plans/list-performance.md)
 - [x] Reset scroll position when re-tapping the active tab (`useScrollToTop` on both `FlatList`s): AI generated, plan [here](./plans/scroll-to-top.md)
