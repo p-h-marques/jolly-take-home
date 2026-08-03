@@ -5,25 +5,46 @@ import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
 import TextInput from "@/components/TextInput";
 import ShowList from "@/features/ShowList";
+import { useSearchShows } from "@/hooks/useSearchShows";
 import { useShows } from "@/hooks/useShows";
 
 export default function List() {
+  const [input, setInput] = useState("");
+  const isSearchActive = input.trim().length > 0;
+
   const {
-    data: shows,
+    data: listShows,
     hasNextPage,
-    isFetching,
-    isError,
+    isFetching: isListFetching,
+    isError: isListError,
     fetchNextPage,
     isFetchingNextPage,
-    status,
-    refetch,
+    status: listStatus,
+    refetch: refetchList,
     isRefetching,
   } = useShows();
 
-  const initialLoading = status === "pending" || isRefetching;
+  const {
+    data: searchResults,
+    status: searchStatus,
+    fetchStatus: searchFetchStatus,
+    isError: isSearchError,
+    refetch: refetchSearch,
+  } = useSearchShows(input);
+
+  const shows = isSearchActive ? searchResults : listShows;
   const hasData = !!shows?.length;
 
-  const [input, setInput] = useState("");
+  const initialLoading = isSearchActive
+    ? searchStatus === "pending" && searchFetchStatus === "fetching"
+    : listStatus === "pending" || isRefetching;
+
+  const isError = isSearchActive ? isSearchError : listStatus === "error";
+  const refetch = isSearchActive ? refetchSearch : refetchList;
+
+  const isEmpty = isSearchActive
+    ? searchStatus === "success" && !hasData
+    : listStatus === "success" && !hasData;
 
   return (
     <View style={{ flex: 1 }}>
@@ -31,19 +52,23 @@ export default function List() {
 
       {initialLoading && <Loading text="Loading..." />}
 
-      {status === "error" && !initialLoading && !hasData && (
+      {isError && !initialLoading && !hasData && (
         <ErrorFeedback onRetry={refetch} />
       )}
 
-      {status === "success" && !initialLoading && !hasData && <Empty />}
+      {isEmpty && !initialLoading && <Empty />}
 
       {!initialLoading && hasData && (
         <ShowList
           shows={shows}
-          fetchNextPage={fetchNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          shouldFetchNextPage={hasNextPage && !isFetching && !isError}
-          isNextPageError={isError}
+          fetchNextPage={isSearchActive ? undefined : fetchNextPage}
+          isFetchingNextPage={isSearchActive ? false : isFetchingNextPage}
+          shouldFetchNextPage={
+            isSearchActive
+              ? false
+              : hasNextPage && !isListFetching && !isListError
+          }
+          isNextPageError={isSearchActive ? false : isListError}
         />
       )}
     </View>

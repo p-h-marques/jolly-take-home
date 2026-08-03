@@ -38,19 +38,19 @@ function getItemLayout(
 
 interface ShowListProps {
   shows: Show[] | undefined;
-  fetchNextPage: () => void;
-  isFetchingNextPage: boolean;
-  shouldFetchNextPage: boolean;
-  isNextPageError: boolean;
+  fetchNextPage?: () => void;
+  isFetchingNextPage?: boolean;
+  shouldFetchNextPage?: boolean;
+  isNextPageError?: boolean;
 }
 
 export default function ShowList(props: ShowListProps) {
   const {
     shows,
     fetchNextPage,
-    isFetchingNextPage,
-    shouldFetchNextPage,
-    isNextPageError,
+    isFetchingNextPage = false,
+    shouldFetchNextPage = false,
+    isNextPageError = false,
   } = props;
 
   const listRef = useRef<FlatList>(null);
@@ -70,12 +70,13 @@ export default function ShowList(props: ShowListProps) {
       removeClippedSubviews
       onEndReached={() => {
         if (shouldFetchNextPage) {
-          fetchNextPage();
+          fetchNextPage?.();
         }
       }}
       ListFooterComponent={() => {
         if (isFetchingNextPage) return <Loading text="Loading more..." />;
-        if (isNextPageError) return <FooterError onRetry={fetchNextPage} />;
+        if (isNextPageError)
+          return <FooterError onRetry={() => fetchNextPage?.()} />;
         return null;
       }}
     />
