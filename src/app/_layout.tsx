@@ -9,7 +9,18 @@ export default function RootLayout() {
       <StatusBar />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="shows/[id]" options={{ title: "Show" }} />
+        <Stack.Screen
+          name="shows/[id]"
+          options={{
+            title: "",
+            headerTransparent: true,
+            headerStyle: { backgroundColor: "transparent" },
+            headerShadowVisible: false,
+            headerBackVisible: true,
+            headerBackTitle: "Back",
+            headerBackButtonMenuEnabled: false,
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   );

@@ -56,7 +56,7 @@ export default function List() {
 
       <StatusFilters status={status} setStatus={setStatus} />
 
-      {initialLoading && <Loading text="Loading..." />}
+      {initialLoading && <Loading />}
 
       {isError && !initialLoading && !hasData && (
         <ErrorFeedback onRetry={refetch} />
