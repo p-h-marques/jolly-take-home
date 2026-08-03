@@ -4,8 +4,8 @@ Action plan for [step 4 of the roadmap](05_roadmap.md).
 
 - [x] Document `GET /shows/:id` in [02_tv_maze_api.md](02_tv_maze_api.md) and `bruno/Shows/Get Show.bru`: Done manually
 - [x] `getShow(id)` in `src/api/shows.ts`: `GET /shows/:id` for the show header (name, image, status, genres, summary)
-- [ ] `useShow(id)` hook wrapping `getShow` (`src/hooks/useShow.ts`)
-- [ ] `useShowEpisodes(id)` hook wrapping the existing `getShowEpisodes` (`src/api/shows.ts`) in `src/hooks/useShowEpisodes.ts`
+- [x] `useShow(id)` hook wrapping `getShow` (`src/hooks/useShow.ts`): AI generated, plan [here](./plans/show-hooks.md)
+- [x] `useShowEpisodes(id)` hook wrapping the existing `getShowEpisodes` (`src/api/shows.ts`) in `src/hooks/useShowEpisodes.ts`: AI generated, plan [here](./plans/show-hooks.md)
 - [ ] Replace the `src/app/shows/[id].tsx` stub with the real screen, composing the two hooks above
 - [ ] Show header: hero image (placeholder for `image: null`, same pattern as `ShowListItem`), name, status badge, summary — rendered once `useShow` resolves
 - [ ] Strip HTML tags from `summary` before rendering (TVMaze returns it as sanitized HTML, e.g. `<p>...</p>`)
