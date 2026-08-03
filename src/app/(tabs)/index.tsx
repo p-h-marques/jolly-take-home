@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { Keyboard, Pressable } from "react-native";
 import Empty from "@/components/Empty";
 import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
@@ -47,7 +47,7 @@ export default function List() {
     : listStatus === "success" && !hasData;
 
   return (
-    <View style={{ flex: 1 }}>
+    <Pressable style={{ flex: 1 }} onPress={Keyboard.dismiss}>
       <TextInput value={input} onChangeText={setInput} />
 
       {initialLoading && <Loading text="Loading..." />}
@@ -71,6 +71,6 @@ export default function List() {
           isNextPageError={isSearchActive ? false : isListError}
         />
       )}
-    </View>
+    </Pressable>
   );
 }

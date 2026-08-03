@@ -68,6 +68,7 @@ export default function ShowList(props: ShowListProps) {
       updateCellsBatchingPeriod={50}
       windowSize={7}
       removeClippedSubviews
+      keyboardDismissMode="on-drag"
       onEndReached={() => {
         if (shouldFetchNextPage) {
           fetchNextPage?.();
