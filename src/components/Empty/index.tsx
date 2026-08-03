@@ -1,25 +1,19 @@
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { StyleSheet, Text, View } from "react-native";
-import Button from "@/components/Button";
 import { colors } from "@/styles/theme";
 
-interface IProps {
-  onRetry?: () => void;
-}
-
-export default function ErrorFeedback(props: IProps) {
-  const { onRetry } = props;
-
+export default function Empty() {
   return (
     <View style={styles.container}>
-      <Ionicons name="alert-circle-outline" size={48} color={colors.error} />
-      <Text style={styles.title}>Could not load data</Text>
+      <Ionicons
+        name="help-circle-outline"
+        size={48}
+        color={colors.placeholderBackground}
+      />
+      <Text style={styles.title}>No data found</Text>
       <Text style={styles.description}>
-        Something went wrong while fetching data.{"\n"}Check your connection and
-        try again.
+        Try a different search or{"\n"}clear the status filter.
       </Text>
-
-      {onRetry && <Button title="Try Again" onPress={onRetry} />}
     </View>
   );
 }

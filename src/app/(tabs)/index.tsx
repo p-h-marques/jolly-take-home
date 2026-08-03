@@ -1,4 +1,5 @@
 import { View } from "react-native";
+import Empty from "@/components/Empty";
 import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
 import ShowList from "@/features/ShowList";
@@ -16,6 +17,8 @@ export default function List() {
 
   const initialLoading = status === "pending" || isRefetching;
 
+  const ListComponent = shows?.length ? ShowList : Empty;
+
   return (
     <View style={{ flex: 1 }}>
       {initialLoading && <Loading text="Loading..." />}
@@ -25,7 +28,7 @@ export default function List() {
       )}
 
       {status === "success" && !initialLoading && (
-        <ShowList
+        <ListComponent
           shows={shows}
           fetchNextPage={fetchNextPage}
           isFetchingNextPage={isFetchingNextPage}
