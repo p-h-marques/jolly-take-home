@@ -12,7 +12,7 @@ Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Fa
 
 ## 3. Search & filter
 
-`GET /search/shows?q=` with debounce, plus status filter (Running / Ended / To Be Determined). Normalize the differing response shapes from `/shows` and `/search/shows`. `Badge` component creation to be used into `ShowListItem` and filters area.
+`GET /search/shows?q=` with debounce, plus status filter (Running / Ended / To Be Determined). Response shapes from `/shows` and `/search/shows` are reconciled per-hook via `select`, not a separate normalization layer. `Badge` component creation to be used into `ShowListItem` and filters area.
 
 ## 4. Detail view
 
@@ -24,7 +24,7 @@ Favorite/unfavorite action, persisted with AsyncStorage, dedicated Favorites tab
 
 ## 6. Unit tests
 
-A few targeted unit tests, per [04_tech_decisions.md](04_tech_decisions.md) — mainly the search + status-filter normalization logic.
+A few targeted unit tests, per [04_tech_decisions.md](04_tech_decisions.md) — mainly the status-filter combination logic.
 
 ## 7. Polish & submission
 

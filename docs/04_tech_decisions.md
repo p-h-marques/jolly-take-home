@@ -48,7 +48,7 @@ No additional ESLint plugins layered on top of [Biome](https://biomejs.dev/).
 
 ### Testing — Minimal, targeted
 
-Not a full suite — 1–2 tests just to demonstrate testing know-how. Best candidate: the search + status-filter normalization logic, since it's the piece with the most actual business logic (API returns different shapes for `/shows` vs `/search/shows`).
+Not a full suite — 1–2 tests just to demonstrate testing know-how. Best candidate: the status-filter combination logic (filtering search/list results by `status` client-side). The `/shows` vs `/search/shows` shape difference is handled inline via each hook's `select` and is trivial enough not to warrant its own extraction/test.
 
 ### Platform — Mobile only
 
