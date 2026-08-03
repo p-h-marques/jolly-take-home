@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import type { Show } from "@/api/types";
 import { colors } from "@/styles/theme";
@@ -8,7 +9,12 @@ interface IProps {
   show: Show;
 }
 
-export default function ShowListItem(props: IProps) {
+// Thumbnail (56) + vertical padding (12 top + 12 bottom) + bottom border (1)
+// from `styles` below — kept in sync manually. Consumed by the list
+// screen's `getItemLayout` so FlatList can skip per-row measurement.
+export const ITEM_HEIGHT = 81;
+
+function ShowListItem(props: IProps) {
   const { show } = props;
 
   return (
@@ -40,6 +46,8 @@ export default function ShowListItem(props: IProps) {
     </View>
   );
 }
+
+export default memo(ShowListItem);
 
 const styles = StyleSheet.create({
   container: {
