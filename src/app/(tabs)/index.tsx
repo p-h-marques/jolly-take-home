@@ -1,4 +1,5 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
 import ShowList from "@/features/ShowList";
 import { useShows } from "@/hooks/useShows";
@@ -10,15 +11,7 @@ export default function List() {
     <View style={{ flex: 1 }}>
       {status === "pending" && <Loading text="Loading..." />}
 
-      {status === "error" && (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text style={{ fontSize: 18, color: "red" }}>
-            Failed to load shows.
-          </Text>
-        </View>
-      )}
+      {status === "error" && <ErrorFeedback />}
 
       {status === "success" && (
         <ShowList
