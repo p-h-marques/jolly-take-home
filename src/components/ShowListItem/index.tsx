@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import type { Show } from "@/api/types";
+import Badge from "@/components/Badge";
 import { colors } from "@/styles/theme";
 
 interface IProps {
@@ -39,9 +40,7 @@ function ShowListItem(props: IProps) {
         <Text style={styles.name} numberOfLines={1}>
           {show.name}
         </Text>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{show.status}</Text>
-        </View>
+        <Badge type={show.status} />
       </View>
     </View>
   );
@@ -76,17 +75,5 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: "600",
-  },
-  badge: {
-    alignSelf: "flex-start",
-    borderWidth: 1,
-    borderColor: colors.badgeBorder,
-    borderRadius: 999,
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-  },
-  badgeText: {
-    fontSize: 12,
-    color: colors.badgeText,
   },
 });
