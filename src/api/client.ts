@@ -12,7 +12,7 @@ export class ApiError extends Error {
 
 type QueryParams = Record<string, string | number | boolean | undefined>;
 
-function buildQueryString(params?: QueryParams): string {
+export function buildQueryString(params?: QueryParams): string {
   if (!params) return "";
 
   const searchParams = new URLSearchParams();
