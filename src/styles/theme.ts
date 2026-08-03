@@ -6,4 +6,6 @@ export const colors = {
   placeholderIcon: "#858585",
   badgeBorder: "#d1d5db",
   badgeText: "#4b5563",
+  error: "#cf3535",
+  primary: "#66f",
 } as const;

@@ -5,15 +5,26 @@ import ShowList from "@/features/ShowList";
 import { useShows } from "@/hooks/useShows";
 
 export default function List() {
-  const { data: shows, fetchNextPage, isFetchingNextPage, status } = useShows();
+  const {
+    data: shows,
+    fetchNextPage,
+    isFetchingNextPage,
+    status,
+    refetch,
+    isRefetching,
+  } = useShows();
+
+  const initialLoading = status === "pending" || isRefetching;
 
   return (
     <View style={{ flex: 1 }}>
-      {status === "pending" && <Loading text="Loading..." />}
+      {initialLoading && <Loading text="Loading..." />}
 
-      {status === "error" && <ErrorFeedback />}
+      {status === "error" && !initialLoading && (
+        <ErrorFeedback onRetry={refetch} />
+      )}
 
-      {status === "success" && (
+      {status === "success" && !initialLoading && (
         <ShowList
           shows={shows}
           fetchNextPage={fetchNextPage}
