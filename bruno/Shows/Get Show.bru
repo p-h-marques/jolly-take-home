@@ -1,0 +1,22 @@
+meta {
+  name: Get Show
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/shows/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 1
+}
+
+docs {
+  All primary information for a single show. Same object shape as an item
+  from List Shows, returned as a bare object instead of an array.
+
+  Used for the detail view header (name, image, status, genres, summary).
+}

@@ -65,7 +65,18 @@ Allows building a local cache of all TVMaze shows. Results are paginated, with a
 
 `status` is the field used for the filter requested in the assignment (Running / Ended / To Be Determined).
 
-## 2. Show Search — `GET /search/shows?q=`
+## 2. Show Details — `GET /shows/:id`
+
+> Retrieve all primary information for a given show.
+
+Same object shape as a single item from the Show Index (section 1 above), but returned as a bare object instead of an array — used for the detail view header (name, image, status, genres, summary).
+
+**Example URL:**
+- `https://api.tvmaze.com/shows/1`
+
+**Example response** (`GET https://api.tvmaze.com/shows/1`): same shape as the Show Index example above (`id: 1`), returned directly instead of wrapped in an array.
+
+## 3. Show Search — `GET /search/shows?q=`
 
 > Search through all the shows in our database by the show's name. ... uses a fuzzy matching algorithm ... Results are returned in order of relevancy (best matches on top).
 
@@ -120,7 +131,7 @@ Allows building a local cache of all TVMaze shows. Results are paginated, with a
 
 > Note from the assignment: the `/shows` and `/search/shows` responses have different shapes — search wraps each show in `{ score, show: {...} }`, while the index returns the show objects directly.
 
-## 3. Episode List — `GET /shows/:id/episodes`
+## 4. Episode List — `GET /shows/:id/episodes`
 
 > A complete list of episodes for the given show. Episodes are returned in their airing order, and include full episode information.
 

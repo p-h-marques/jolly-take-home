@@ -10,11 +10,11 @@ Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Fa
 
 `GET /shows?page=` with infinite scroll. Loading, error, and empty states.
 
-## 3. Search & filter
+## 3. Search & filter - Details [here](./08_search_filter_shows.md)
 
 `GET /search/shows?q=` with debounce, plus status filter (Running / Ended / To Be Determined). Response shapes from `/shows` and `/search/shows` are reconciled per-hook via `select`, not a separate normalization layer. `Badge` component creation to be used into `ShowListItem` and filters area.
 
-## 4. Detail view
+## 4. Detail view - Details [here](./09_detail_view.md)
 
 Show details screen with `GET /shows/:id/episodes`, episodes grouped by season.
 
