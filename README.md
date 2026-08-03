@@ -47,11 +47,6 @@ jolly-app
 
 All data comes from the public TVMaze API (`https://api.tvmaze.com`, no auth required), rate-limited to ~20 requests per 10 seconds per IP. See [docs/02_tv_maze_api.md](docs/02_tv_maze_api.md) for endpoint details and example responses, and the `bruno/` collection for ready-to-run requests.
 
-## AI steps
+## Developing steps
 
-### Documentation
-
-I used AI to organize context details about the project:
-
-- problem statement
-- TV Maze Api Docs
+TBD
