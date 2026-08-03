@@ -1,5 +1,6 @@
 import Ionicons from "@react-native-vector-icons/ionicons";
 import {
+  Keyboard,
   Pressable,
   TextInput as RNTextInput,
   StyleSheet,
@@ -32,7 +33,13 @@ export default function TextInput(props: IProps) {
         />
 
         {value.length > 0 && (
-          <Pressable onPress={() => onChangeText("")} hitSlop={8}>
+          <Pressable
+            onPress={() => {
+              onChangeText("");
+              Keyboard.dismiss();
+            }}
+            hitSlop={8}
+          >
             <Ionicons
               name="close-circle"
               size={20}

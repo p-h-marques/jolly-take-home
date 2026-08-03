@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
-import type { ShowStatus } from "@/api/types";
+import { Pressable, StyleSheet, Text } from "react-native";
+import type { ShowAllStatus } from "@/api/types";
 import { colors } from "@/styles/theme";
 
 interface IProps {
   inactive?: boolean;
-  type: ShowStatus | "all";
+  onPress?: () => void;
+  type: ShowAllStatus;
 }
 
 export default function Badge(props: IProps) {
-  const { inactive, type } = props;
+  const { inactive, onPress, type } = props;
 
   const backgroundColor = inactive
     ? colors.badge.inactiveBorder
@@ -19,9 +20,12 @@ export default function Badge(props: IProps) {
   const borderColor = inactive ? colors.badge.inactiveBorder : "transparent";
 
   return (
-    <View style={{ ...styles.container, backgroundColor, borderColor }}>
+    <Pressable
+      style={{ ...styles.container, backgroundColor, borderColor }}
+      onPress={onPress}
+    >
       <Text style={{ ...styles.text, color: textColor }}>{type}</Text>
-    </View>
+    </Pressable>
   );
 }
 

@@ -1,5 +1,7 @@
 export type ShowStatus = "Running" | "Ended" | "To Be Determined";
 
+export type ShowAllStatus = ShowStatus | "All";
+
 export interface ImageSet {
   medium: string;
   original: string;

@@ -1,12 +1,12 @@
-import type { ShowStatus } from "@/api/types";
+import type { ShowAllStatus } from "@/api/types";
 
 // Colors currently in use across components. Extend only when a new
 // screen/component actually needs a color not listed here.
 
 // Record<> instead of a loose object so a missing/renamed status is a
 // compile-time error instead of a silent runtime fallback.
-const badgeStatusColors: Record<ShowStatus | "all", string> = {
-  all: "#66f",
+const badgeStatusColors: Record<ShowAllStatus, string> = {
+  All: "#66f",
   Running: "#30ad5e",
   Ended: "#fa5353",
   "To Be Determined": "#dcb412",
