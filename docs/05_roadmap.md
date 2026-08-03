@@ -6,7 +6,7 @@ High-level plan, based on [01_objective.md](01_objective.md) and [04_tech_decisi
 
 Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Favorites), API client base config.
 
-## 2. List view
+## 2. List view - Details [here](./07_list_view.md)
 
 `GET /shows?page=` with infinite scroll. Loading, error, and empty states.
 
@@ -20,7 +20,7 @@ Show details screen with `GET /shows/:id/episodes`, episodes grouped by season.
 
 ## 5. Favorites
 
-Favorite/unfavorite action, persisted with AsyncStorage, dedicated Favorites tab with count.
+Favorite/unfavorite action, persisted with AsyncStorage, dedicated Favorites tab with count, favorites count in tab header.
 
 ## 6. Unit tests
 
