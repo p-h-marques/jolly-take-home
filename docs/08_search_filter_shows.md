@@ -2,7 +2,7 @@
 
 Action plan for [step 3 of the roadmap](05_roadmap.md).
 
-- [ ] `useSearchShows` hook wrapping `searchShows` (`src/api/shows.ts`), keyed by query, with 1s debounce per [04_tech_decisions.md](04_tech_decisions.md)
+- [x] `useSearchShows` hook wrapping `searchShows` (`src/api/shows.ts`), keyed by query, with 1s debounce per [04_tech_decisions.md](04_tech_decisions.md): AI generated, plan [here](./plans/search-hook.md)
 - [ ] Normalize `/shows` and `/search/shows` response shapes into a single `Show[]` for the list to consume regardless of source
 - [x] `Badge` component: extract from the inline badge markup in `ShowListItem` (`src/components/ShowListItem/index.tsx`), reusable for both the list item status and the filter chips: Done manually
 - [ ] Search input UI on the List screen (`src/app/(tabs)/index.tsx`): text field, wired to the debounced hook
