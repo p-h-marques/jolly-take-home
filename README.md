@@ -29,11 +29,8 @@ jolly-app
 │   │   └── types.ts                    # Show, Episode, SearchResult...
 │   ├── components
 │   │   └── ui                          # Generic reusable primitives (Button, Chip, EmptyState...)
-│   ├── features                        # Components/hooks that centralize a screen's user flow
-│   │   ├── shows                       # List screen
-│   │   ├── show-detail                 # Detail screen
-│   │   └── favorites                   # Favorites screen & persistence
-│   └── lib                             # Utility functions & config (e.g. TanStack Query client)
+│   ├── hooks                           # Data-fetching & screen-logic hooks (e.g. useShows)
+│   └── lib                             # Utility functions & config
 ```
 
 ## Features

@@ -82,7 +82,7 @@ export function getShowEpisodes(
 ```
 
 - `getShows` → `GET /shows?page=N`, returns bare `Show[]`.
-- `searchShows` → `GET /search/shows?q=STRING`, returns the **raw wrapped** `SearchResult[]` — deliberately *not* flattened to `Show[]`. Per [docs/05_roadmap.md](docs/05_roadmap.md) step 3, normalizing the `/shows` vs `/search/shows` shape mismatch into one list-item shape is explicitly a *Search & filter* concern (lives in `src/features/`), not this layer's job. Keeping `shows.ts` raw/honest also keeps it trivially simple — the normalization logic is what [docs/04_tech_decisions.md](docs/04_tech_decisions.md) names as the actual unit-test target later.
+- `searchShows` → `GET /search/shows?q=STRING`, returns the **raw wrapped** `SearchResult[]` — deliberately *not* flattened to `Show[]`. Per [docs/05_roadmap.md](docs/05_roadmap.md) step 3, normalizing the `/shows` vs `/search/shows` shape mismatch into one list-item shape is explicitly a *Search & filter* concern (lives in `src/hooks/`), not this layer's job. Keeping `shows.ts` raw/honest also keeps it trivially simple — the normalization logic is what [docs/04_tech_decisions.md](docs/04_tech_decisions.md) names as the actual unit-test target later.
 - `getShowEpisodes` → `GET /shows/:id/episodes[?specials=1]`. `showId: number | string` (Expo Router's `useLocalSearchParams` yields strings; avoids a forced cast at call sites). `opts.specials` maps to `specials=1` only when `true` (omitted otherwise — matches TVMaze's default-excluded behavior).
 - No try/catch here — `ApiError` propagates untouched; handling it is a feature/UI-layer concern (loading/error states in the List/Detail screens, roadmap steps 2 & 4).
 
@@ -106,5 +106,5 @@ No `src/api/index.ts` barrel — only 3 files, each imported directly (`@/api/sh
 
 1. `npx tsc --noEmit` — confirm the new files type-check cleanly against `tsconfig.json` (strict mode).
 2. `npm run lint` (Biome) — confirm formatting/import-order rules pass.
-3. Manual smoke test: temporarily call `getShows(0)`, `searchShows("girls")`, and `getShowEpisodes(1)` from a route file (e.g. a `useEffect` + `console.log` in `src/app/(tabs)/index.tsx`), run `npm start`, and confirm the logged shapes match the examples in `docs/02_tv_maze_api.md` / the `bruno/` collection responses. Remove the temporary call afterward — this is a throwaway check, not a permanent test (unit tests are roadmap step 6, targeting the search/filter normalization logic once it exists in `src/features/`).
+3. Manual smoke test: temporarily call `getShows(0)`, `searchShows("girls")`, and `getShowEpisodes(1)` from a route file (e.g. a `useEffect` + `console.log` in `src/app/(tabs)/index.tsx`), run `npm start`, and confirm the logged shapes match the examples in `docs/02_tv_maze_api.md` / the `bruno/` collection responses. Remove the temporary call afterward — this is a throwaway check, not a permanent test (unit tests are roadmap step 6, targeting the search/filter normalization logic once it exists in `src/hooks/`).
 4. Update the `docs/06_project_setup.md` checklist: check off "Create base API client pointing to TVMaze" once done.
