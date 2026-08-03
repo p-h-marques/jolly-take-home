@@ -31,11 +31,13 @@ export default function ShowDetail() {
         <Loading />
       ) : (
         <View style={styles.container}>
-          <Image
-            source={{ uri: show?.image?.original }}
-            contentFit="cover"
-            style={styles.image}
-          />
+          {show?.image?.original && (
+            <Image
+              source={{ uri: show?.image?.original }}
+              contentFit="cover"
+              style={styles.image}
+            />
+          )}
 
           <Text style={styles.title}>{show?.name}</Text>
 
