@@ -2,7 +2,7 @@
 
 High-level plan, based on [01_objective.md](01_objective.md) and [04_tech_decisions.md](04_tech_decisions.md). Steps are meant to be sequential, each one shippable/testable on its own.
 
-## 1. Project setup
+## 1. Project setup - Details [here](./06_project_setup.md)
 
 Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Favorites), API client base config.
 
