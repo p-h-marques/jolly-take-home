@@ -29,11 +29,14 @@ jolly-app
 │   │   └── types.ts                    # Show, Episode, SearchResult...
 │   ├── components
 │   │   └── ui                          # Generic reusable primitives (Button, Chip, EmptyState...)
+│   ├── features                        # Complex, screen-level UI (e.g. ShowList)
 │   ├── hooks                           # Data-fetching & screen-logic hooks (e.g. useShows)
 │   ├── lib                             # Utility functions & config
 │   └── styles
 │       └── theme.ts                    # Centralized color definitions
 ```
+
+Routes under `app` stay thin: they wire up data (via `hooks`) and delegate the actual screen UI to a component in `features`. Anything too complex or specific to a single screen to live in `components` (generic, reusable) belongs in `features` instead — e.g. `features/ShowList` holds the `FlatList`, its `renderItem`/`getItemLayout`, and related list-item components for the List screen, while `app/(tabs)/index.tsx` just calls `useShows()` and renders `<ShowList />`.
 
 ## Features
 
