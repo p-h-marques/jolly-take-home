@@ -1,9 +1,13 @@
 import { useHeaderHeight } from "@react-navigation/elements";
+import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
+import Badge from "@/components/Badge";
 import Loading from "@/components/Loading";
+import StatusBadge from "@/components/StatusBadge";
 import { useShow } from "@/hooks/useShow";
 import { useShowEpisodes } from "@/hooks/useShowEpisodes";
+import { stripHtml } from "@/lib/stripHtml";
 
 export default function ShowDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -19,17 +23,31 @@ export default function ShowDetail() {
   return (
     <View
       style={{
-        ...styles.container,
+        ...styles.wrapper,
         paddingTop: headerHeight + 16,
       }}
     >
       {isLoading ? (
         <Loading />
       ) : (
-        <View>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Show detail</Text>
-          <Text>id: {id}</Text>
-          <Text>Data: {show?.name}</Text>
+        <View style={styles.container}>
+          <Image
+            source={{ uri: show?.image?.original }}
+            contentFit="cover"
+            style={styles.image}
+          />
+
+          <Text style={styles.title}>{show?.name}</Text>
+
+          <View style={styles.badgesContainer}>
+            {show?.status && <StatusBadge type={show?.status} />}
+
+            {show?.genres?.map((genre) => (
+              <Badge key={genre} text={genre} />
+            ))}
+          </View>
+
+          <Text style={styles.summary}>{stripHtml(show?.summary)}</Text>
         </View>
       )}
     </View>
@@ -37,9 +55,30 @@ export default function ShowDetail() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     paddingHorizontal: 16,
     paddingBottom: 16,
+  },
+  container: {
+    gap: 8,
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  badgesContainer: {
+    flexDirection: "row",
+    gap: 4,
+    marginBottom: 8,
+  },
+  summary: {
+    fontSize: 16,
   },
 });

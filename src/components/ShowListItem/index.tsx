@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import type { Show } from "@/api/types";
-import Badge from "@/components/Badge";
+import StatusBadge from "@/components/StatusBadge";
 import { colors } from "@/styles/theme";
 
 interface IProps {
@@ -40,7 +40,7 @@ function ShowListItem(props: IProps) {
         <Text style={styles.name} numberOfLines={1}>
           {show.name}
         </Text>
-        <Badge type={show.status} />
+        <StatusBadge type={show.status} />
       </View>
     </View>
   );

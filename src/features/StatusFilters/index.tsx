@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import type { Show, ShowAllStatus } from "@/api/types";
-import Badge from "@/components/Badge";
+import StatusBadge from "@/components/StatusBadge";
 
 interface IProps {
   status: ShowAllStatus[];
@@ -31,22 +31,22 @@ export default function StatusFilters(props: IProps) {
 
   return (
     <View style={styles.container}>
-      <Badge
+      <StatusBadge
         type="All"
         inactive={status.length > 0}
         onPress={() => setStatus([])}
       />
-      <Badge
+      <StatusBadge
         type="Running"
         inactive={!status.includes("Running")}
         onPress={() => handlePress("Running")}
       />
-      <Badge
+      <StatusBadge
         type="Ended"
         inactive={!status.includes("Ended")}
         onPress={() => handlePress("Ended")}
       />
-      <Badge
+      <StatusBadge
         type="To Be Determined"
         inactive={!status.includes("To Be Determined")}
         onPress={() => handlePress("To Be Determined")}
