@@ -6,7 +6,7 @@ Action plan for [step 2 of the roadmap](05_roadmap.md).
 - [x] Add `useInfiniteQuery` hook wrapping `getShows` (`src/api/shows.ts`), keyed by page, `getNextPageParam` incrementing the page number: AI generated, plan [here](./plans/shows-hook.md)
 - [x] Wire `(tabs)/index.tsx` to the hook, replacing `MOCK_SHOWS`; trigger `fetchNextPage` via `FlatList`'s `onEndReached`: Done manually
 - [x] Build `ShowListItem` component: image (with placeholder for `image: null`), name, status badge: Helped by AI
-- [ ] Pagination loading state: footer spinner while `isFetchingNextPage`
+- [x] Pagination loading state: footer spinner while `isFetchingNextPage`
 - [ ] Initial loading state: full-screen spinner/skeleton while first page loads
 - [ ] Error state: message + retry action on initial fetch failure
 - [ ] Empty state: fallback message if `/shows` ever returns an empty page (edge case, unlikely but required by the brief)
