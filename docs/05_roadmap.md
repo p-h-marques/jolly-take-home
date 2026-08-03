@@ -12,7 +12,7 @@ Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Fa
 
 ## 3. Search & filter
 
-`GET /search/shows?q=` with debounce, plus status filter (Running / Ended / To Be Determined). Normalize the differing response shapes from `/shows` and `/search/shows`.
+`GET /search/shows?q=` with debounce, plus status filter (Running / Ended / To Be Determined). Normalize the differing response shapes from `/shows` and `/search/shows`. `Badge` component creation to be used into `ShowListItem` and filters area.
 
 ## 4. Detail view
 

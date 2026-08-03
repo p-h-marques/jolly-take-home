@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, View } from "react-native";
+import ShowListItem from "@/components/ShowListItem";
 import { useShows } from "@/hooks/useShows";
 
 export default function List() {
@@ -11,13 +12,8 @@ export default function List() {
         data={shows}
         keyExtractor={(show) => show.id.toString()}
         renderItem={({ item }) => (
-          <Link
-            href={{ pathname: "/shows/[id]", params: { id: item.id } }}
-            style={{ padding: 16 }}
-          >
-            <Text>
-              {item.id} - {item.name}
-            </Text>
+          <Link href={{ pathname: "/shows/[id]", params: { id: item.id } }}>
+            <ShowListItem show={item} />
           </Link>
         )}
         onEndReached={() => fetchNextPage()}

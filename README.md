@@ -30,7 +30,9 @@ jolly-app
 │   ├── components
 │   │   └── ui                          # Generic reusable primitives (Button, Chip, EmptyState...)
 │   ├── hooks                           # Data-fetching & screen-logic hooks (e.g. useShows)
-│   └── lib                             # Utility functions & config
+│   ├── lib                             # Utility functions & config
+│   └── styles
+│       └── theme.ts                    # Centralized color definitions
 ```
 
 ## Features
