@@ -5,6 +5,13 @@ export function getShows(page: number, signal?: AbortSignal): Promise<Show[]> {
   return get<Show[]>("/shows", { page }, signal);
 }
 
+export function getShow(
+  showId: number | string,
+  signal?: AbortSignal,
+): Promise<Show> {
+  return get<Show>(`/shows/${showId}`, undefined, signal);
+}
+
 export function searchShows(
   query: string,
   signal?: AbortSignal,

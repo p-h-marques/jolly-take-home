@@ -3,7 +3,7 @@
 Action plan for [step 4 of the roadmap](05_roadmap.md).
 
 - [x] Document `GET /shows/:id` in [02_tv_maze_api.md](02_tv_maze_api.md) and `bruno/Shows/Get Show.bru`: Done manually
-- [ ] `getShow(id)` in `src/api/shows.ts`: `GET /shows/:id` for the show header (name, image, status, genres, summary)
+- [x] `getShow(id)` in `src/api/shows.ts`: `GET /shows/:id` for the show header (name, image, status, genres, summary)
 - [ ] `useShow(id)` hook wrapping `getShow` (`src/hooks/useShow.ts`)
 - [ ] `useShowEpisodes(id)` hook wrapping the existing `getShowEpisodes` (`src/api/shows.ts`) in `src/hooks/useShowEpisodes.ts`
 - [ ] Replace the `src/app/shows/[id].tsx` stub with the real screen, composing the two hooks above
