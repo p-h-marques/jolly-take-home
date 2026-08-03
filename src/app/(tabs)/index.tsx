@@ -1,7 +1,7 @@
 import { useScrollToTop } from "@react-navigation/native";
 import { Link } from "expo-router";
 import { memo, useRef } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import type { Show } from "@/api/types";
 import Loading from "@/components/Loading";
 import ShowListItem, { ITEM_HEIGHT } from "@/components/ShowListItem";
@@ -37,28 +37,43 @@ function getItemLayout(
 }
 
 export default function List() {
-  const { data: shows, fetchNextPage, isFetchingNextPage } = useShows();
   const listRef = useRef<FlatList>(null);
   useScrollToTop(listRef);
 
+  const { data: shows, fetchNextPage, isFetchingNextPage, status } = useShows();
+
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
-        ref={listRef}
-        data={shows}
-        keyExtractor={(show) => show.id.toString()}
-        renderItem={renderShow}
-        getItemLayout={getItemLayout}
-        initialNumToRender={12}
-        maxToRenderPerBatch={12}
-        updateCellsBatchingPeriod={50}
-        windowSize={7}
-        removeClippedSubviews
-        onEndReached={() => fetchNextPage()}
-        ListFooterComponent={() =>
-          isFetchingNextPage && <Loading text="Loading more..." />
-        }
-      />
+      {status === "pending" && <Loading text="Loading..." />}
+
+      {status === "error" && (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text style={{ fontSize: 18, color: "red" }}>
+            Failed to load shows.
+          </Text>
+        </View>
+      )}
+
+      {status === "success" && (
+        <FlatList
+          ref={listRef}
+          data={shows}
+          keyExtractor={(show) => show.id.toString()}
+          renderItem={renderShow}
+          getItemLayout={getItemLayout}
+          initialNumToRender={12}
+          maxToRenderPerBatch={12}
+          updateCellsBatchingPeriod={50}
+          windowSize={7}
+          removeClippedSubviews
+          onEndReached={() => fetchNextPage()}
+          ListFooterComponent={() =>
+            isFetchingNextPage && <Loading text="Loading more..." />
+          }
+        />
+      )}
     </View>
   );
 }
