@@ -1,31 +1,15 @@
 import { useMemo } from "react";
-import { SectionList, StyleSheet, Text, View } from "react-native";
+import { SectionList, StyleSheet, Text } from "react-native";
 import type { Episode, Show } from "@/api/types";
 import EpisodeListItem from "@/components/EpisodeListItem";
 import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
+import SeasonHeader from "@/components/SeasonHeader";
 import ShowHeader from "@/features/ShowHeader";
 import {
   type EpisodeSection,
   groupEpisodesBySeason,
 } from "@/lib/groupEpisodesBySeason";
-import { colors } from "@/styles/theme";
-
-function keyExtractor(episode: Episode) {
-  return episode.id.toString();
-}
-
-function renderItem({ item }: { item: Episode }) {
-  return <EpisodeListItem episode={item} />;
-}
-
-function renderSectionHeader({ section }: { section: EpisodeSection }) {
-  return (
-    <View style={styles.seasonHeader}>
-      <Text style={styles.seasonHeaderText}>Season {section.season}</Text>
-    </View>
-  );
-}
 
 interface IProps {
   show: Show;
@@ -51,9 +35,11 @@ export default function EpisodeList(props: IProps) {
         paddingBottom: 16,
       }}
       sections={sections}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      renderSectionHeader={renderSectionHeader}
+      keyExtractor={(episode) => episode.id.toString()}
+      renderItem={(props) => <EpisodeListItem episode={props.item} />}
+      renderSectionHeader={(info) => (
+        <SeasonHeader section={info.section as EpisodeSection} />
+      )}
       ListHeaderComponent={
         <>
           <ShowHeader show={show} />
@@ -78,16 +64,7 @@ const styles = StyleSheet.create({
   episodesTitle: {
     fontSize: 20,
     fontWeight: "600",
-    marginTop: 16,
+    marginVertical: 16,
     paddingHorizontal: 16,
-  },
-  seasonHeader: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: colors.placeholderBackground,
-  },
-  seasonHeaderText: {
-    fontSize: 14,
-    fontWeight: "600",
   },
 });

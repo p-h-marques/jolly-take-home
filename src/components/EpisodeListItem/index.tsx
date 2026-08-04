@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
+    marginHorizontal: 16,
   },
   label: {
     flex: 1,
