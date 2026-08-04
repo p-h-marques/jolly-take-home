@@ -4,7 +4,9 @@ import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import type { Show } from "@/api/types";
 import StatusBadge from "@/components/StatusBadge";
+import { useFavorites } from "@/hooks/useFavorites";
 import { colors } from "@/styles/theme";
+import FavoriteButton from "../FavoriteButton";
 
 interface IProps {
   show: Show;
@@ -17,6 +19,10 @@ export const ITEM_HEIGHT = 81;
 
 function ShowListItem(props: IProps) {
   const { show } = props;
+
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  const isShowFavorite = isFavorite(show.id);
 
   return (
     <View style={styles.container}>
@@ -42,6 +48,11 @@ function ShowListItem(props: IProps) {
         </Text>
         <StatusBadge type={show.status} />
       </View>
+
+      <FavoriteButton
+        isFavorite={isShowFavorite}
+        onToggle={() => toggleFavorite(show.id)}
+      />
     </View>
   );
 }
