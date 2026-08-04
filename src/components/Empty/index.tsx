@@ -2,7 +2,17 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import { StyleSheet, Text, View } from "react-native";
 import { colors } from "@/styles/theme";
 
-export default function Empty() {
+interface IProps {
+  title?: string;
+  description?: string;
+}
+
+export default function Empty(props: IProps) {
+  const {
+    title = "No data found",
+    description = "Try a different search or\nclear the status filter.",
+  } = props;
+
   return (
     <View style={styles.container}>
       <Ionicons
@@ -10,10 +20,8 @@ export default function Empty() {
         size={48}
         color={colors.placeholderBackground}
       />
-      <Text style={styles.title}>No data found</Text>
-      <Text style={styles.description}>
-        Try a different search or{"\n"}clear the status filter.
-      </Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.description}>{description}</Text>
     </View>
   );
 }

@@ -1,9 +1,15 @@
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Tabs } from "expo-router";
 import ScreenTitle from "@/components/ScreenTitle";
+import { useFavorites } from "@/hooks/useFavorites";
 import { colors } from "@/styles/theme";
 
 export default function TabsLayout() {
+  const { favoriteIds } = useFavorites();
+
+  const favoritesBadge =
+    favoriteIds.length > 0 ? favoriteIds.length : undefined;
+
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: colors.primary }}>
       <Tabs.Screen
@@ -28,7 +34,9 @@ export default function TabsLayout() {
         name="favorites"
         options={{
           title: "Favorites",
-          headerTitle: () => <ScreenTitle title="Favorites" />,
+          headerTitle: () => (
+            <ScreenTitle title="Favorites" count={favoritesBadge} />
+          ),
           headerTitleAlign: "left",
           headerStyle: {
             backgroundColor: "transparent",
@@ -40,6 +48,7 @@ export default function TabsLayout() {
               color={color}
             />
           ),
+          tabBarBadge: favoritesBadge,
         }}
       />
     </Tabs>

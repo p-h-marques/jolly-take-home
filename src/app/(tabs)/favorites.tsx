@@ -1,29 +1,34 @@
-import { useScrollToTop } from "@react-navigation/native";
-import { Link } from "expo-router";
-import { useRef } from "react";
-import { FlatList, Text, View } from "react-native";
-
-const MOCK_FAVORITES = [{ id: "45209", name: "Severance" }];
+import { StyleSheet, View } from "react-native";
+import Empty from "@/components/Empty";
+import ErrorFeedback from "@/components/Error";
+import Loading from "@/components/Loading";
+import ShowList from "@/features/ShowList";
+import { useFavoriteShows } from "@/hooks/useFavoriteShows";
 
 export default function Favorites() {
-  const listRef = useRef<FlatList>(null);
-  useScrollToTop(listRef);
+  const { shows, isPending, isError, refetch } = useFavoriteShows();
+  const hasData = !!shows.length;
 
   return (
-    <View style={{ flex: 1 }}>
-      <FlatList
-        ref={listRef}
-        data={MOCK_FAVORITES}
-        keyExtractor={(show) => show.id}
-        renderItem={({ item }) => (
-          <Link
-            href={{ pathname: "/shows/[id]", params: { id: item.id } }}
-            style={{ padding: 16 }}
-          >
-            <Text>{item.name}</Text>
-          </Link>
-        )}
-      />
+    <View style={styles.container}>
+      {isPending && <Loading />}
+
+      {isError && !isPending && !hasData && <ErrorFeedback onRetry={refetch} />}
+
+      {!isPending && !isError && !hasData && (
+        <Empty
+          title="No favorites yet"
+          description="Tap the heart on a show to add it here."
+        />
+      )}
+
+      {!isPending && hasData && <ShowList shows={shows} />}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

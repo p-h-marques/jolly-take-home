@@ -1,5 +1,5 @@
 import type { UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { getShow } from "@/api/shows";
 import type { Show } from "@/api/types";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -27,15 +27,25 @@ function combineFavoriteShows(results: UseQueryResult<Show>[]) {
 
 export function useFavoriteShows() {
   const { favoriteIds, status: favoritesStatus } = useFavorites();
+  const queryClient = useQueryClient();
 
   const { shows, isPending, isError } = useQueries({
     queries: favoriteIds.map(toShowQuery),
     combine: combineFavoriteShows,
   });
 
+  function refetch() {
+    return Promise.all(
+      favoriteIds.map((id) =>
+        queryClient.refetchQueries({ queryKey: showQueryKey(id) }),
+      ),
+    );
+  }
+
   return {
     shows,
     isPending: favoritesStatus === "pending" || isPending,
     isError: favoritesStatus === "error" || isError,
+    refetch,
   };
 }
