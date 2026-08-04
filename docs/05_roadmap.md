@@ -24,7 +24,7 @@ Favorite/unfavorite action, persisted with AsyncStorage, dedicated Favorites tab
 
 ## 6. Unit tests
 
-A few targeted unit tests, per [04_tech_decisions.md](04_tech_decisions.md) — mainly the status-filter combination logic.
+A few targeted unit tests, per [04_tech_decisions.md](04_tech_decisions.md) — mainly the status-filter combination logic (`filterShowsByStatus`, `src/features/StatusFilters/index.test.ts`).
 
 ## 7. Polish & submission
 

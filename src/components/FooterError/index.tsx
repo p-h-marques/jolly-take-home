@@ -11,8 +11,8 @@ export default function FooterError(props: IProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Não foi possível carregar mais itens.</Text>
-      <Button title="Tentar novamente" onPress={onRetry} />
+      <Text style={styles.text}>Could not load more items.</Text>
+      <Button title="Try Again" onPress={onRetry} />
     </View>
   );
 }
