@@ -15,7 +15,7 @@ Action plan for [step 4 of the roadmap](05_roadmap.md).
 - [x] Initial loading state: full-screen spinner while `useShow` is pending (reuse `Loading`): AI generated, plan [here](./plans/episodes-by-season.md)
 - [x] Error state: message + retry if `useShow` fails (reuse `ErrorFeedback`), full-screen since there's nothing else to show yet: AI generated, plan [here](./plans/episodes-by-season.md)
 - [x] Episodes loading/error state: independent of the header — inline spinner/retry while/if `useShowEpisodes` is pending/fails, header still renders regardless: AI generated, plan [here](./plans/episodes-by-season.md)
-- [ ] Favorite toggle on this screen is deferred to [step 5 of the roadmap](05_roadmap.md) (Favorites) — no heart icon here yet, matching `ShowListItem` which also doesn't render one until that step
+- [x] Favorite toggle on this screen is deferred to [step 5 of the roadmap](05_roadmap.md) (Favorites) — no heart icon here yet, matching `ShowListItem` which also doesn't render one until that step
 
 ## Refactor — split screen composition
 

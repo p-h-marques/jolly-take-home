@@ -18,7 +18,7 @@ Expo + TypeScript + Biome scaffolding, Expo Router base structure (tabs: List/Fa
 
 Show details screen with `GET /shows/:id/episodes`, episodes grouped by season.
 
-## 5. Favorites
+## 5. Favorites - Details [here](./10_favorites.md)
 
 Favorite/unfavorite action, persisted with AsyncStorage, dedicated Favorites tab with count, favorites count in tab header.
 
