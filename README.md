@@ -2,6 +2,8 @@
 
 Show Explorer — a small app for browsing TV shows using the free, public [TVMaze API](https://www.tvmaze.com/api) (no key, no auth). This is a take-home assignment; see [docs/01_objective.md](docs/01_objective.md) for the full brief.
 
+![mockup](docs/mockup.png)
+
 ## Running locally
 
 Requirements: Node.js and either the [Expo Go](https://expo.dev/go) app on a physical device, an iOS Simulator, or an Android Emulator.
