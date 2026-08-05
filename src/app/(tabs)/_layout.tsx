@@ -11,7 +11,12 @@ export default function TabsLayout() {
     favoriteIds.length > 0 ? favoriteIds.length : undefined;
 
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: colors.primary }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: colors.primary,
+        headerShadowVisible: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

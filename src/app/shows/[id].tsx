@@ -1,6 +1,6 @@
-import { useHeaderHeight } from "@react-navigation/elements";
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ErrorFeedback from "@/components/Error";
 import Loading from "@/components/Loading";
 import EpisodeList from "@/features/EpisodeList";
@@ -10,7 +10,8 @@ import { useShowEpisodes } from "@/hooks/useShowEpisodes";
 export default function ShowDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  const headerHeight = useHeaderHeight();
+  const insets = useSafeAreaInsets();
+  const headerHeight = insets.top + 44;
 
   const { data: show, status: showStatus, refetch: refetchShow } = useShow(id);
 
